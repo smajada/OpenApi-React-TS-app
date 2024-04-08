@@ -54,11 +54,7 @@ const HomePage: React.FC = () => {
         },
     ];
 
-    return (
-        <>
-            <Table dataSource={posts} columns={columns} rowKey='id' bordered />
-        </>
-    );
+    return <Table dataSource={posts} columns={columns} rowKey='id' bordered />;
 };
 
 export default HomePage;
