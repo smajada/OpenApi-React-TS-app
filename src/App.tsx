@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import LayoutOrg from './components/organisms/LayoutOrg';

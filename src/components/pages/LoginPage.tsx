@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, Form, type FormProps, Input } from 'antd';
+import { Form, type FormProps, Input } from 'antd';
+import { ButtonAtm } from '../atoms/Button/ButtonAtm';
 
 type FieldType = {
     username?: string;
@@ -47,9 +48,7 @@ const LoginPage: React.FC = () => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Button type='primary' htmlType='submit'>
-                    Submit
-                </Button>
+                <ButtonAtm variant='orange'>Submit</ButtonAtm>
             </Form.Item>
         </Form>
     );

@@ -1,50 +1,13 @@
-import { StoryObj, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
+import { ButtonAtm } from './ButtonAtm';
 
-import Button from './ButtonAtm';
+export default {
+    title: 'Components/ButtonAtm',
+    component: ButtonAtm,
+} as Meta;
 
-const meta: Meta<typeof Button> = {
-    title: 'Atoms/Button',
-    tags: ['autodocs'],
-    component: Button,
-};
+export const RedButton = () => <ButtonAtm variant='red'>Red Button</ButtonAtm>;
 
-export default meta;
+export const OrangeButton = () => <ButtonAtm variant='orange'>Orange Button</ButtonAtm>;
 
-type Story = StoryObj<typeof meta>;
-
-export const Red: Story = {
-    args: {
-        variant: 'red',
-    },
-};
-
-export const Yellow: Story = {
-    args: {
-        variant: 'yellow',
-    },
-};
-
-export const Green: Story = {
-    args: {
-        variant: 'green',
-    },
-};
-
-export const Grouped: Story = {
-    render: (args) => (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 10,
-                border: '1px solid black',
-                width: 'max-content',
-                padding: 10,
-            }}
-        >
-            <Button variant='red' />
-            <Button variant='yellow' />
-            <Button variant='green' />
-        </div>
-    ),
-};
+export const GreenButton = () => <ButtonAtm variant='green'>Green Button</ButtonAtm>;

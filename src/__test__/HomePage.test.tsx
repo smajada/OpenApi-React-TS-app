@@ -1,5 +1,5 @@
-import { render, fireEvent } from '@testing-library/react'; // Import act
-import userEvent from '@testing-library/user-event'; // Import userEvent
+import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import LoginPage from '../components/pages/LoginPage';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ window.matchMedia =
     };
 
 const localStorageMock = (() => {
-    const store: Record<string, any> = {};
+    let store: Record<string, unknown> = {};
 
     return {
         getItem(key: string) {
