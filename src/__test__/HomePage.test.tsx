@@ -13,6 +13,34 @@ window.matchMedia =
         };
     };
 
+const localStorageMock = (() => {
+    const store: Record<string, any> = {};
+
+    return {
+        getItem(key: string) {
+            return store[key];
+        },
+
+        setItem(key: number, value: string) {
+            store[key] = value;
+        },
+
+        clear() {
+            store = {};
+        },
+
+        removeItem(key: number) {
+            delete store[key];
+        },
+
+        getAll() {
+            return store;
+        },
+    };
+})();
+
+Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+
 describe('LoginPage', () => {
     test('renders login form correctly', () => {
         const { getByLabelText, getByText } = render(
@@ -37,9 +65,7 @@ describe('LoginPage', () => {
         userEvent.type(getByLabelText('Password'), 'test');
         fireEvent.click(getByText('Submit'));
 
-        // expect(window.localStorage.getItem('user')).toEqual(
-        //     '{"username":"admin","password":"test"}'
-        // );
+        expect(localStorage.getItem('user')).toEqual('{"username":"admin","password":"test"}');
 
         expect(window.location.pathname).toBe('/');
     });
