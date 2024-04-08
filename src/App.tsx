@@ -2,13 +2,17 @@ import './App.css';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import { Layout, Menu, theme } from 'antd';
-import { Routes, Route, useLocation, NavLink } from 'react-router-dom';
-import { AuthRouteComponent } from './core';
+import { Route, useLocation, NavLink, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/utils/ProtectedRoute';
+import { useLocalStorage } from 'react-use';
 
 function App() {
     const location = useLocation(); // Obtiene la ubicación actual
     const path = location.pathname;
     const { Header, Content, Footer } = Layout;
+
+    // Obteniendo los valores de usuario del localStorage
+    const [user] = useLocalStorage('user', { username: '', password: '' });
 
     //Theme tokens
     const {
@@ -36,7 +40,7 @@ function App() {
                     <Menu
                         theme='dark'
                         mode='horizontal'
-                        defaultSelectedKeys={path === '/login' ? ['Login'] : ['Posts']}
+                        selectedKeys={path === '/login' ? ['Login'] : ['Posts']}
                         style={{ flex: 1, minWidth: 0 }}
                     >
                         {items.map((item) => (
@@ -57,10 +61,19 @@ function App() {
                         }}
                     >
                         {/* Routes */}
-
                         <Routes>
+                            <Route
+                                element={
+                                    <ProtectedRoute
+                                        canActivate={
+                                            user?.username === 'admin' && user?.password === 'test'
+                                        }
+                                    />
+                                }
+                            >
+                                <Route path='/' element={<HomePage />} />
+                            </Route>
                             <Route path='/login' element={<LoginPage />} />
-                            <Route path='/' element={<HomePage />} />
                         </Routes>
                         {/* End-Routes */}
                     </div>

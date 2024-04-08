@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../core';
-import { useContext } from 'react';
-import { Button, Checkbox, Form, type FormProps, Input } from 'antd';
+import { Button, Form, type FormProps, Input } from 'antd';
 
 type FieldType = {
     username?: string;
@@ -11,13 +9,10 @@ type FieldType = {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const { setUserInfo } = useContext(AuthContext);
 
     const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-        if (values.username === 'admin' && values.password === 'test') {
-            setUserInfo(values.username); // That's the important part
-            navigate('/');
-        }
+        localStorage.setItem('user', JSON.stringify(values));
+        navigate('/');
     };
 
     const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
@@ -49,14 +44,6 @@ const LoginPage: React.FC = () => {
                 rules={[{ required: true, message: 'Please input your password!' }]}
             >
                 <Input.Password />
-            </Form.Item>
-
-            <Form.Item<FieldType>
-                name='remember'
-                valuePropName='checked'
-                wrapperCol={{ offset: 8, span: 16 }}
-            >
-                <Checkbox>Remember me</Checkbox>
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
