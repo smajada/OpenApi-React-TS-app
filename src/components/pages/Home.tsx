@@ -5,10 +5,12 @@ import { Table, Layout, Menu, theme } from 'antd';
 const postsApi = new PostsApi();
 const { Header, Content, Footer } = Layout;
 
-const items = new Array(3).fill(null).map((_, index) => ({
-    key: index + 1,
-    label: `nav ${index + 1}`,
-}));
+const items = [
+    {
+        key: 'Posts',
+        label: 'Posts',
+    },
+];
 
 const App: React.FC = () => {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -65,7 +67,7 @@ const App: React.FC = () => {
     return (
         <Layout>
             <Header style={{ display: 'flex', alignItems: 'center' }}>
-                <div className='demo-logo' />
+                <div className='demo-logo'>Posts</div>
                 <Menu
                     theme='dark'
                     mode='horizontal'
@@ -83,7 +85,7 @@ const App: React.FC = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                    <Table dataSource={posts} columns={columns} rowKey='id' />
+                    <Table dataSource={posts} columns={columns} rowKey='id' bordered />
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
