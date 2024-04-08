@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface Context {
     userInfo: string;
     setUserInfo: (user: string) => void;

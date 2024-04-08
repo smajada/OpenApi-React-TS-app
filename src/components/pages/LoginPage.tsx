@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../core';
-import { useContext, FormEvent } from 'react';
+import { useContext } from 'react';
 import { Button, Checkbox, Form, type FormProps, Input } from 'antd';
 
 type FieldType = {

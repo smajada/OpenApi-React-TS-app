@@ -3,6 +3,7 @@ import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import { Layout, Menu, theme } from 'antd';
 import { Routes, Route, useLocation, NavLink } from 'react-router-dom';
+import { AuthRouteComponent } from './core';
 
 function App() {
     const location = useLocation(); // Obtiene la ubicación actual
@@ -56,6 +57,7 @@ function App() {
                         }}
                     >
                         {/* Routes */}
+
                         <Routes>
                             <Route path='/login' element={<LoginPage />} />
                             <Route path='/' element={<HomePage />} />
