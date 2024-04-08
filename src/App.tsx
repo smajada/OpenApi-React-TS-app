@@ -1,88 +1,32 @@
 import './App.css';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
-import { Layout, Menu, theme } from 'antd';
-import { Route, useLocation, NavLink, Routes } from 'react-router-dom';
+import LayoutOrg from './components/organisms/LayoutOrg';
+import { Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import { useLocalStorage } from 'react-use';
 
 function App() {
-    const location = useLocation(); // Obtiene la ubicación actual
-    const path = location.pathname;
-    const { Header, Content, Footer } = Layout;
-
     // Obteniendo los valores de usuario del localStorage
     const [user] = useLocalStorage('user', { username: '', password: '' });
 
-    //Theme tokens
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
-
-    const items = [
-        {
-            key: 'Posts',
-            label: 'Posts',
-            path: '/',
-        },
-        {
-            key: 'Login',
-            label: 'Login',
-            path: '/login',
-        },
-    ];
-
     return (
-        <>
-            <Layout>
-                <Header style={{ display: 'flex', alignItems: 'center' }}>
-                    <div className='demo-logo'>Posts</div>
-                    <Menu
-                        theme='dark'
-                        mode='horizontal'
-                        selectedKeys={path === '/login' ? ['Login'] : ['Posts']}
-                        style={{ flex: 1, minWidth: 0 }}
-                    >
-                        {items.map((item) => (
-                            <Menu.Item key={item.key}>
-                                <NavLink to={item.path}>{item.label}</NavLink>
-                            </Menu.Item>
-                        ))}
-                    </Menu>
-                </Header>
-                <Content style={{ padding: '0 48px' }}>
-                    <div
-                        style={{
-                            background: colorBgContainer,
-                            minHeight: 280,
-                            padding: 24,
-                            marginTop: 24,
-                            borderRadius: borderRadiusLG,
-                        }}
-                    >
-                        {/* Routes */}
-                        <Routes>
-                            <Route
-                                element={
-                                    <ProtectedRoute
-                                        canActivate={
-                                            user?.username === 'admin' && user?.password === 'test'
-                                        }
-                                    />
-                                }
-                            >
-                                <Route path='/' element={<HomePage />} />
-                            </Route>
-                            <Route path='/login' element={<LoginPage />} />
-                        </Routes>
-                        {/* End-Routes */}
-                    </div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>
-                    Application ©{new Date().getFullYear()} Created by Sergi Majada
-                </Footer>
-            </Layout>
-        </>
+        <LayoutOrg>
+            {/* Routes */}
+            <Routes>
+                <Route
+                    element={
+                        <ProtectedRoute
+                            canActivate={user?.username === 'admin' && user?.password === 'test'}
+                        />
+                    }
+                >
+                    <Route path='/' element={<HomePage />} />
+                </Route>
+                <Route path='/login' element={<LoginPage />} />
+            </Routes>
+            {/* End-Routes */}
+        </LayoutOrg>
     );
 }
 
