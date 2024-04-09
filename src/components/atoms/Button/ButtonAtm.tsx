@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type Props = {
-    variant: 'red' | 'orange' | 'green';
+    variant: 'red' | 'orange' | 'green' | 'blue';
     children: React.ReactNode;
 };
 
