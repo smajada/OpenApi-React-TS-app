@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# OpenApi React Ts App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple application that demonstrates how to use OpenAPI to generate types and components. Also, it uses `antd` for the UI components, `storybook` for the component library, and `jest` for testing.
 
-Currently, two official plugins are available:
+For the architecture, I've used `atomic design` principles to organize the components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Installation](#installation)
+- [Usage](#usage)
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Start the application
+
+```bash
+npm start
+```
+
+### Testing
+
+```bash
+npm run test
+```
+
+## Usage
+
+Once you have started the project, you will need to login to the application. You can use the following credentials:
+
+- Username: `admin`
+- Password: `test`
+
+Once you have logged in, you will be able to see the list of posts. 
+
