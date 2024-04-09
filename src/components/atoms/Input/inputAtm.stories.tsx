@@ -2,7 +2,7 @@ import { Meta } from '@storybook/react';
 import InputAtm from './InputAtm'; // Asegúrate de importar correctamente el componente
 
 export default {
-    title: 'Components/InputAtm',
+    title: 'Atoms/Input',
     component: InputAtm,
 } as Meta;
 

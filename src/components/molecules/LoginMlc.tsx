@@ -25,6 +25,8 @@ const Login = () => {
     const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
         console.log('Success:', values);
         localStorage.setItem('user', JSON.stringify(values));
+        // Handle redirection after successful login
+        // For example, using a history object from react-router-dom
     };
 
     const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
